@@ -1,0 +1,5 @@
+### Get all contacts
+GET http://localhost:8080/contacts
+
+### Get one contact
+GET http://localhost:8080/contacts/replace_with_contact_id
