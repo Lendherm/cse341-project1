@@ -5,12 +5,12 @@ const contactsRoutes = require('./routes/contacts');
 
 dotenv.config();
 const app = express();
-const port = process.env.PORT || 8080; // ⚠️ Render usa su propio puerto
+const port = process.env.PORT || 8080; // Render asigna su propio puerto
 
 app.use(express.json());
 app.use('/contacts', contactsRoutes);
 
-// Ruta base para probar si está viva la API
+// Ruta base para probar si la API está viva
 app.get('/', (req, res) => {
   res.send('API funcionando correctamente 🚀');
 });
@@ -19,9 +19,13 @@ app.get('/', (req, res) => {
 initDb((err) => {
   if (err) {
     console.error('❌ Error al conectar con MongoDB:', err);
+    // Levantar el servidor de todas formas
+    app.listen(port, () => {
+      console.log(`⚠️ Servidor corriendo en puerto ${port} SIN conexión a MongoDB`);
+    });
   } else {
     app.listen(port, () => {
-      console.log(`✅ Servidor corriendo en el puerto ${port}`);
+      console.log(`✅ Servidor corriendo en puerto ${port} CON conexión a MongoDB`);
     });
   }
 });
