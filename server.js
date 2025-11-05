@@ -4,6 +4,8 @@ const { initDb } = require('./db/connect');
 const contactsRoutes = require('./routes/contacts');
 
 dotenv.config();
+console.log('MONGODB_URI:', process.env.MONGODB_URI ? '✅ Variable detectada' : '❌ No detectada');
+
 const app = express();
 const port = process.env.PORT || 8080; // Render asigna su propio puerto
 
