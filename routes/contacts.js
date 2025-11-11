@@ -158,7 +158,8 @@ router.post('/', async (req, res) => {
  * @swagger
  * /contacts/{id}:
  *   put:
- *     summary: Update a contact by ID
+ *     summary: Update a contact by ID (adds "Update" to firstName)
+ *     operationId: updateContact
  *     tags: [Contacts]
  *     parameters:
  *       - in: path
@@ -173,16 +174,48 @@ router.post('/', async (req, res) => {
  *         application/json:
  *           schema:
  *             $ref: '#/components/schemas/Contact'
+ *           example:
+ *             firstName: Joe
+ *             lastName: Doe
+ *             email: joe@example.com
+ *             favoriteColor: Red
+ *             birthday: 1990-05-20
  *     responses:
- *       204:
+ *       200:
  *         description: Contact updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Contact updated
+ *                 firstName:
+ *                   type: string
+ *                   example: JoeUpdate
  *       404:
  *         description: Contact not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Contact not found
  */
 router.put('/:id', async (req, res) => {
   try {
     const db = getDb();
-    const { firstName, lastName, email, favoriteColor, birthday } = req.body;
+    let { firstName, lastName, email, favoriteColor, birthday } = req.body;
+
+    if (!firstName || !lastName || !email || !favoriteColor || !birthday) {
+      return res.status(400).json({ message: 'All fields are required' });
+    }
+
+    // Agrega "Update" al firstName
+    firstName = firstName + 'Update';
 
     const result = await db.collection('contacts').updateOne(
       { _id: new ObjectId(req.params.id) },
@@ -193,7 +226,7 @@ router.put('/:id', async (req, res) => {
       return res.status(404).json({ message: 'Contact not found' });
     }
 
-    res.status(204).send();
+    res.status(200).json({ message: 'Contact updated', firstName });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

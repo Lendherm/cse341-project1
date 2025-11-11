@@ -17,7 +17,7 @@ Content-Type: application/json
 }
 
 ### Update
-PUT https://cse341-project1-rfos.onrender.com/contacts/ID_A_ACTUALIZAR
+PUT https://cse341-project1-rfos.onrender.com/contacts/69127de17de9447e0e855ae0
 Content-Type: application/json
 
 {
@@ -29,4 +29,4 @@ Content-Type: application/json
 }
 
 ### Delete
-DELETE https://cse341-project1-rfos.onrender.com/contacts/ID_A_BORRAR
+DELETE https://cse341-project1-rfos.onrender.com/contacts/69127de17de9447e0e855ae0
