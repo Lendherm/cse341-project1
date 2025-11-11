@@ -1,11 +1,11 @@
 ### Get all contacts
-GET http://localhost:8080/contacts
+GET https://cse341-project1-rfos.onrender.com/contacts
 
 ### Get one contact
-GET http://localhost:8080/contacts/690a7491f7d639793e7305ce
+GET https://cse341-project1-rfos.onrender.com/contacts/690a7491f7d639793e7305ce
 
 ### Create a new contact
-POST http://localhost:8080/contacts
+POST https://cse341-project1-rfos.onrender.com/contacts
 Content-Type: application/json
 
 {
@@ -16,8 +16,8 @@ Content-Type: application/json
   "birthday": "1998-04-15"
 }
 
-### Update a contact
-PUT http://localhost:8080/contacts/690aa852212842a56654b29a
+### Update
+PUT https://cse341-project1-rfos.onrender.com/contacts/ID_A_ACTUALIZAR
 Content-Type: application/json
 
 {
@@ -28,5 +28,5 @@ Content-Type: application/json
   "birthday": "1998-04-15"
 }
 
-### Delete a contact
-DELETE http://localhost:8080/contacts/690aa852212842a56654b29a
+### Delete
+DELETE https://cse341-project1-rfos.onrender.com/contacts/ID_A_BORRAR
