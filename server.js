@@ -4,6 +4,7 @@ const { initDb } = require('./db/connect');
 const contactsRoutes = require('./routes/contacts');
 const swaggerDocs = require('./swagger');
 
+
 dotenv.config();
 console.log(
   'MONGODB_URI:',
